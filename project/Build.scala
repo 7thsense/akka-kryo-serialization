@@ -28,7 +28,7 @@ object Build extends sbt.Build {
   lazy val typesafe = "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
   lazy val typesafeSnapshot = "Typesafe Snapshots Repository" at "http://repo.typesafe.com/typesafe/snapshots/"
   lazy val sonatypeSnapshot = "Sonatype Snapshots Repository" at "https://oss.sonatype.org/content/repositories/snapshots/"
-  lazy val akkaVersion = "2.4.12"
+  lazy val akkaVersion = "2.5.3"
 
   lazy val root = Project(id = "akka-kryo-serialization", base = file(".")).settings(
 
@@ -37,7 +37,7 @@ object Build extends sbt.Build {
     resolvers += typesafeSnapshot,
     resolvers += sonatypeSnapshot,
     // publishArtifact in packageDoc := false,
-    scalaVersion := "2.12.0",
+    scalaVersion := "2.12.3",
     crossScalaVersions := Seq(scalaVersion.value, "2.11.8"),
     libraryDependencies += "com.typesafe.akka" %% "akka-remote" % akkaVersion,
     libraryDependencies += "com.esotericsoftware" % "kryo" % "4.0.0",
@@ -65,13 +65,13 @@ object Build extends sbt.Build {
     //Enabling hardware AES support if available
     javaOptions in run += "-XX:+UseAES -XX:+UseAESIntrinsics",
 
-    publishTo := {
-      val nexus = "https://oss.sonatype.org/"
-      if (version.value.trim.endsWith("SNAPSHOT"))
-        Some("snapshots" at nexus + "content/repositories/snapshots")
-      else
-        Some("releases" at nexus + "service/local/staging/deploy/maven2")
-    },
+    //publishTo := {
+    //  val nexus = "https://oss.sonatype.org/"
+    //  if (version.value.trim.endsWith("SNAPSHOT"))
+    //    Some("snapshots" at nexus + "content/repositories/snapshots")
+    //  else
+    //    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+    //},
 
     publishMavenStyle := true,
 
